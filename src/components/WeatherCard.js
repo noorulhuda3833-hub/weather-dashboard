@@ -11,26 +11,28 @@ export default function WeatherCard({ location, current }) {
   } = current;
 
   return (
-    <div className="max-w-md mx-auto mt-8 px-6">
-      <div className="bg-white rounded-2xl shadow-md p-6 flex flex-col items-center">
-        <p className="text-black text-sm mb-2">
-          {location.name}, {location.country}
+    <div className="max-w-lg w-full mx-auto mt-10 px-6">
+      <div className="bg-white text-gray-800 rounded-3xl shadow-xl p-8 text-center">
+        <h2 className="text-2xl font-bold">
+          📍 {location.name}, {location.country}
+        </h2>
+
+        <div className="text-8xl mt-6">{getWeatherEmoji(weatherCode)}</div>
+
+        <p className="text-6xl font-bold mt-4 text-indigo-700">
+          {formatTemperature(temperature)}C
         </p>
 
-        <span className="text-5xl">{getWeatherEmoji(weatherCode)}</span>
+        <p className="text-lg text-gray-500 mt-2">{getWeatherDescription(weatherCode)}</p>
 
-        <p className="text-4xl font-bold mt-2 text-red-600">{formatTemperature(temperature)}</p>
-
-        <p className="text-black mt-1">{getWeatherDescription(weatherCode)}</p>
-
-        <div className="mt-6 w-full flex justify-around border-t pt-4">
-          <div className="flex flex-col items-center">
-            <span className="text-xs text-black uppercase">Humidity</span>
-            <span className="text-lg font-medium">{humidity}%</span>
+        <div className="mt-8 grid grid-cols-2 gap-4">
+          <div className="bg-blue-50 rounded-xl py-4">
+            <p className="text-sm text-gray-500">💧 Humidity</p>
+            <p className="text-xl font-semibold mt-1">{humidity}%</p>
           </div>
-          <div className="flex flex-col items-center">
-            <span className="text-xs text-black uppercase">Wind</span>
-            <span className="text-lg font-medium">{windSpeed} km/h</span>
+          <div className="bg-blue-50 rounded-xl py-4">
+            <p className="text-sm text-gray-500">💨 Wind</p>
+            <p className="text-xl font-semibold mt-1">{windSpeed} km/h</p>
           </div>
         </div>
       </div>

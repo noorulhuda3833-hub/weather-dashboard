@@ -11,18 +11,18 @@ export default function SearchBar({ onSearch, isLoading }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex w-full max-w-md mx-auto gap-2 px-6">
+    <form onSubmit={handleSubmit} className="flex w-full max-w-lg mx-auto gap-2 px-6">
       <input
         type="text"
         value={cityInput}
         onChange={(e) => setCityInput(e.target.value)}
-        placeholder="Search a city..."
-        className="flex-1 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 text-amber-50"
+        placeholder="🔍  Search a city, e.g. Lahore"
+        className="flex-1 px-4 py-3 rounded-lg bg-white text-gray-800 shadow-md focus:outline-none focus:ring-4 focus:ring-white/40"
       />
       <button
         type="submit"
         disabled={isLoading}
-        className="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50"
+        className="px-6 py-3 bg-indigo-900 text-white rounded-lg font-semibold shadow-md hover:bg-indigo-950 transition disabled:opacity-50"
       >
         {isLoading ? "..." : "Search"}
       </button>

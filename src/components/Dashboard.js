@@ -36,40 +36,50 @@ export default function Dashboard() {
   }
 
   return (
-    <main className="flex-1 flex flex-col py-12">
-      <h1 className="text-3xl sm:text-4xl font-bold text-center mb-8 text-amber-50 ">
-        Weather Dashboard
-      </h1>
+    <>
+      <main className="flex-1 flex flex-col py-12">
+        <div className="text-center mb-8 px-6">
+          <h1 className="text-4xl sm:text-5xl font-bold">🌤️ Weather Dashboard</h1>
+          <p className="mt-3 text-blue-100">
+            Get the current weather and a 6-day forecast for any city.
+          </p>
+        </div>
 
-      <SearchBar
-        onSearch={searchCity}
-        isLoading={isLoading}
-      />
+        <SearchBar onSearch={searchCity} isLoading={isLoading} />
 
-      {isLoading && <LoadingSpinner />}
+        {isLoading && <LoadingSpinner />}
 
-      {!isLoading && error && (
-        <ErrorMessage message={error} />
-      )}
+        {!isLoading && error && <ErrorMessage message={error} />}
 
-      {!isLoading && !error && weatherData && (
-        <>
-          <WeatherCard
-            location={weatherData.location}
-            current={weatherData.current}
-          />
+        {!isLoading && !error && weatherData && (
+          <>
+            <WeatherCard
+              location={weatherData.location}
+              current={weatherData.current}
+            />
 
-          <ForecastList
-            daily={weatherData.daily}
-          />
-        </>
-      )}
+            <ForecastList daily={weatherData.daily} />
+          </>
+        )}
 
-      {!isLoading && !error && !weatherData && (
-        <p className="text-sm text-black text-center mt-12">
-          Search for a city to see the weather.
-        </p>
-      )}
-    </main>
+        {!isLoading && !error && !weatherData && (
+          <p className="text-center mt-16 text-blue-100">
+            Search for a city to see the weather.
+          </p>
+        )}
+      </main>
+
+      <footer className="text-center text-sm text-blue-100 py-6">
+        Weather data by{" "}
+        <a
+          href="https://open-meteo.com"
+          target="_blank"
+          rel="noreferrer"
+          className="underline hover:text-white"
+        >
+          Open-Meteo
+        </a>
+      </footer>
+    </>
   );
 }

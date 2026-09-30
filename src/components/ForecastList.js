@@ -4,9 +4,9 @@ export default function ForecastList({ daily }) {
   if (!daily || !daily.time) return null;
 
   return (
-    <div className="max-w-2xl mx-auto mt-8 px-6">
-      <p className="text-sm text-black text-center mb-3">6-Day Forecast</p>
-      <div className="flex flex-wrap justify-center gap-3">
+    <div className="max-w-4xl w-full mx-auto mt-10 px-6">
+      <h3 className="text-xl font-bold mb-4">6-Day Forecast</h3>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
         {daily.time.map((date, index) => (
           <ForecastCard
             key={date}
