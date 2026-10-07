@@ -2,10 +2,11 @@ export default function ErrorMessage({ message }) {
   if (!message) return null;
 
   return (
-    <div className="max-w-md mx-auto mt-6 px-6">
-      <p className="text-sm text-red-600 text-center border border-red-300 bg-red-50 rounded-lg px-4 py-3">
-        {message}
-      </p>
-    </div>
+    <p
+      role="alert"
+      className="rounded-xl border border-red-400/30 bg-red-950/40 px-5 py-4 text-red-200"
+    >
+      {message}
+    </p>
   );
 }

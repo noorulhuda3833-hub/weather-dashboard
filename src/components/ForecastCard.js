@@ -1,21 +1,20 @@
-import { formatTemperature, getWeatherEmoji } from "@/utils/formatters";
+import { formatTemperature } from "@/utils/formatters";
+import WeatherIcon from "@/components/WeatherIcon";
 
 export default function ForecastCard({ date, weatherCode, maxTemp, minTemp }) {
-  // Turn "2025-06-01" into something like "Sun" and "Jun 1"
-  const dayName = new Date(date).toLocaleDateString("en-US", { weekday: "short" });
-  const shortDate = new Date(date).toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  // "2025-06-01" -> "Sun". Adding the time keeps it in local time.
+  const dayName = new Date(date + "T00:00:00").toLocaleDateString("en-US", { weekday: "short" });
 
   return (
-    <div className="flex flex-col items-center bg-white rounded-xl p-4 min-w-[100px] shadow-sm">
-      <p className="text-xs text-black uppercase">{dayName}</p>
-      <p className="text-xs text-black mb-2">{shortDate}</p>
+    <li className="flex items-center gap-3 rounded-xl border border-tile-line bg-tile px-4 py-3 md:flex-col md:gap-2 md:px-3 md:py-4">
+      <p className="flex-1 font-bold md:flex-none">{dayName}</p>
 
-      <span className="text-2xl">{getWeatherEmoji(weatherCode)}</span>
+      <WeatherIcon code={weatherCode} className="h-9 w-9 md:h-12 md:w-12" />
 
-      <div className="mt-2 flex flex-col items-center">
-        <span className="text-lg font-semibold">{formatTemperature(maxTemp)}</span>
-        <span className="text-sm text-black">{formatTemperature(minTemp)}</span>
-      </div>
-    </div>
+      <p className="flex w-20 items-baseline justify-end gap-2 md:w-auto md:flex-col md:items-center md:gap-0">
+        <span className="text-lg font-bold md:text-xl">{formatTemperature(maxTemp)}</span>
+        <span className="text-sm text-faint">{formatTemperature(minTemp)}</span>
+      </p>
+    </li>
   );
 }

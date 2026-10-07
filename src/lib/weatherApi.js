@@ -17,9 +17,8 @@ async function getCoordinatesForCity(cityName) {
   return { latitude, longitude, name, country };
 }
 
-// Step 2: get current weather + 6-day forecast for those coordinates.
 async function getWeatherForCoordinates(latitude, longitude) {
-  const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,weather_code,relative_humidity_2m,wind_speed_10m&daily=temperature_2m_max,temperature_2m_min,weather_code&timezone=auto&forecast_days=6`;
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,apparent_temperature,weather_code,relative_humidity_2m,wind_speed_10m&daily=temperature_2m_max,temperature_2m_min,weather_code&timezone=auto&forecast_days=6`;
 
   const response = await fetch(url);
   if (!response.ok) {

@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 
-export default function SearchBar({ onSearch, isLoading }) {
-  const [cityInput, setCityInput] = useState("");
+export default function SearchBar({ onSearch, isLoading, initialValue = "" }) {
+  const [cityInput, setCityInput] = useState(initialValue);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -11,18 +11,23 @@ export default function SearchBar({ onSearch, isLoading }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex w-full max-w-md mx-auto gap-2 px-6">
+    <form onSubmit={handleSubmit} className="flex w-full gap-3">
+      <label htmlFor="city" className="sr-only">
+        City name
+      </label>
       <input
+        id="city"
         type="text"
         value={cityInput}
         onChange={(e) => setCityInput(e.target.value)}
-        placeholder="Search a city..."
-        className="flex-1 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 text-amber-50"
+        placeholder="Search for a city"
+        autoComplete="off"
+        className="h-12 min-w-0 flex-1 rounded-lg border border-field-line bg-field px-5 text-lg text-white placeholder:text-faint focus:border-accent focus:outline-none"
       />
       <button
         type="submit"
         disabled={isLoading}
-        className="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50"
+        className="h-12 shrink-0 rounded-lg bg-accent px-6 text-lg font-bold text-[#04222e] transition hover:brightness-110 disabled:opacity-60 sm:px-8"
       >
         {isLoading ? "..." : "Search"}
       </button>

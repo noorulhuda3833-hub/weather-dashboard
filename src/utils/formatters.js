@@ -5,7 +5,7 @@ export function formatTemperature(temp) {
 
 const weatherCodeMap = {
   0: "Clear sky",
-  1: "Mainly clear",
+  1: "Mostly sunny",
   2: "Partly cloudy",
   3: "Overcast",
   45: "Fog",

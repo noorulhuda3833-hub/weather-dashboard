@@ -4,9 +4,11 @@ export default function ForecastList({ daily }) {
   if (!daily || !daily.time) return null;
 
   return (
-    <div className="max-w-2xl mx-auto mt-8 px-6">
-      <p className="text-sm text-black text-center mb-3">6-Day Forecast</p>
-      <div className="flex flex-wrap justify-center gap-3">
+    <section aria-labelledby="forecast-title" className="mt-8">
+      <h2 id="forecast-title" className="mb-3 text-lg font-bold">
+        {daily.time.length}-Day Forecast
+      </h2>
+      <ul className="flex flex-col gap-2 md:grid md:grid-cols-6 md:gap-3">
         {daily.time.map((date, index) => (
           <ForecastCard
             key={date}
@@ -16,7 +18,7 @@ export default function ForecastList({ daily }) {
             minTemp={daily.temperature_2m_min[index]}
           />
         ))}
-      </div>
-    </div>
+      </ul>
+    </section>
   );
 }
